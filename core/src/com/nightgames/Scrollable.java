@@ -12,7 +12,7 @@ public class Scrollable {
 
     public Scrollable(float x, float y, int width, int height, float scrollSpeed) {
         position = new Vector2(x, y);
-        velocity = new Vector2(scrollSpeed, 0);
+        velocity = new Vector2(0, scrollSpeed);
         this.width = width;
         this.height = height;
         isScrolledDown = false;
@@ -22,18 +22,18 @@ public class Scrollable {
         position.add(velocity.cpy().scl(delta));
 
         // If the Scrollable object is no longer visible:
-        if (position.x > Gdx.graphics.getWidth()) {
+        if ((position.y + AssetLoader.img.getHeight()) < 0) {
             isScrolledDown = true;
         }
     }
 
-    public void reset(float newX) {
-        position.x = newX;
+    public void reset(float newY) {
+        position.y = newY;
         isScrolledDown = false;
     }
 
     public void stop() {
-        velocity.x = 0;
+        velocity.y = 0;
     }
 
     // Getters for instance variables

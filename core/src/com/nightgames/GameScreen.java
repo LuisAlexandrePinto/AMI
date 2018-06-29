@@ -23,8 +23,8 @@ public class GameScreen implements Screen, InputProcessor {
         camera.update();
         batch.setProjectionMatrix(camera.combined);
 
-        img = new Scrollable(0 - AssetLoader.img.getWidth(), Gdx.graphics.getHeight() / 2 -  AssetLoader.img.getHeight() / 2,
-                AssetLoader.img.getWidth(), AssetLoader.img.getHeight(), 50f);
+        img = new Scrollable(Gdx.graphics.getWidth() / 2 - AssetLoader.img.getWidth() / 2, Gdx.graphics.getHeight(),
+                AssetLoader.img.getWidth(), AssetLoader.img.getHeight(), -50f);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class GameScreen implements Screen, InputProcessor {
 
         img.update(delta);
         if (img.isScrolledDown())
-            img.reset(0 - AssetLoader.img.getWidth());
+            img.reset(Gdx.graphics.getHeight());
 
         batch.begin();
         batch.draw(AssetLoader.img, img.getX(), img.getY());
